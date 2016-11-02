@@ -83,6 +83,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `clinicasj`.`problemas` (
   `idProblemas` INT(11) NOT NULL AUTO_INCREMENT,
+  `Problema` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idProblemas`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
@@ -93,6 +94,7 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `clinicasj`.`sintomas` (
   `idSintomas` INT(11) NOT NULL AUTO_INCREMENT,
+   `Sintoma` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idSintomas`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
