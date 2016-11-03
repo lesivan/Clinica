@@ -103,7 +103,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="Citas.php"><i class="fa fa-check-circle-o"></i>Citas</a></li>
-            <li><a href="Agregar_Cita.php"><i class="fa fa-check-circle-o"></i>Expedientes</a></li>
+            <li><a href="expedientes.php"><i class="fa fa-check-circle-o"></i>Expedientes</a></li>
             <li><a href="Agregar_Cita.php"><i class="fa fa-check-circle-o"></i>Agregar Cita</a></li>
 
           </ul>
@@ -156,17 +156,11 @@
         <div class="box-body">
          
           <form class="form-horizontal">
-    <div class="form-group">
-        <label class="control-label col-xs-3">Paciente</label>
-    <div class="col-xs-5">
-      <select class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-    </div>
+      <div class="form-group">
+        <label class="control-label col-xs-3">Paciente:</label>
+        <div class="col-xs-5">
+            <input type="text" class="form-control" >
+        </div>
     </div>
     <div class="form-group">
         <label class="control-label col-xs-3">Doctor:</label>
@@ -175,8 +169,8 @@
           <option>1</option>
           <option>2</option>
           <option>3</option>
-          <option>4</option>
-          <option>5</option>
+            <option>4</option>
+            <option>5</option>
         </select>
     </div>
     </div>
