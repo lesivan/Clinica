@@ -104,7 +104,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="Citas.php"><i class="fa fa-check-circle-o"></i>Citas</a></li>
-            <li><a href="Agregar_Cita.php"><i class="fa fa-check-circle-o"></i>Expedientes</a></li>
+            <li><a href="expedientes.php"><i class="fa fa-check-circle-o"></i>Expedientes</a></li>
             <li><a href="Agregar_Cita.php"><i class="fa fa-check-circle-o"></i>Agregar Cita</a></li>
           </ul>
         </li>
@@ -154,38 +154,65 @@
           </div>
         </div>
         <div class="box-body">
+
+<?php
+
+
+if(isset($_POST["nombreD"]))
+{
+    
+    include_once("Conexion.php");
+    $obj=new MySQL();
+    
+    $nombreD = htmlentities($_POST['nombreD']);
+    $apellidoD = htmlentities($_POST['apellidoD']); //codifica caracteres especiales en HTML
+    $especialidad = htmlentities($_POST['especialidad']);
+    
+    
+    $consulta = "INSERT INTO `doctor` (`PrimerNombre`, `PrimerApellido`,`Especialidad`) VALUES ('$nombreD', '$apellidoD',
+    '$especialidad')";
+    $BAND = $obj->consulta($consulta);  
+    
+    if ($BAND === true)
+    {
+        echo "<script type='text/javascript'>window.location='V2aFacultad.php?i=1'; </script>";
+        exit();
+    }
+}
+?>
          
           
 <form class="form-horizontal">
      <div class="form-group">
          <label for="inputName" class="control-label col-xs-2">Nombre:</label>
          <div class="col-xs-5">
-             <input type="name" class="form-control" placeholder="Nombre">
+             <input type="name" class="form-control" placeholder="Nombre" name="nombreD">
          </div>
      </div>
      <div class="form-group">
          <label for="" class="control-label col-xs-2">Apellido:</label>
          <div class="col-xs-5">
-             <input type="text" class="form-control" placeholder="apellido">
+             <input type="text" class="form-control" placeholder="apellido" name="apellidoD">
          </div>
      </div>
      <div class="form-group">
          <label for="" class="control-label col-xs-2">Especialidad:</label>
          <div class="col-xs-5">
-             <input type="text" class="form-control" placeholder="especialida">
+             <input type="text" class="form-control" placeholder="especialidad" name="especialidad">
          </div>
      </div>
     
-</form>
-
-                 
-               <div class="form-group">
+    <div class="form-group">
                     <div class="col-xs-offset-3 col-xs-9">
                         <input type="submit" class="btn btn-primary" value="Guardar">
-                        <input type="reset" class="btn btn-default" value="Limpiar">
+                    
                     </div>
                 </div>
             </div>
+</form>
+
+                 
+               
                
         </div>
         <!-- /.box-body -->
