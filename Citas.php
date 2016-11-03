@@ -103,7 +103,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="Citas.php"><i class="fa fa-check-circle-o"></i>Citas</a></li>
-            <li><a href="Agregar_Cita.php"><i class="fa fa-check-circle-o"></i>Expedientes</a></li>
+            <li><a href="expedientes.php"><i class="fa fa-check-circle-o"></i>Expedientes</a></li>
             <li><a href="Agregar_Cita.php"><i class="fa fa-check-circle-o"></i>Agregar Cita</a></li>
           </ul>
         </li>

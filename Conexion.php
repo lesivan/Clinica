@@ -6,7 +6,7 @@ private $conexion;
 
 public function MySQL(){
 	
- $this->conexion= new mysqli("localhost","root",'root',"clinicasj");
+ $this->conexion= new mysqli("localhost","root",'',"clinicasj");
 if ($this->conexion -> connect_errno) {
 die( "Fallo la conexión a MySQL: (" . $this->conexion -> mysqli_connect_errno() 
 . ") " . $this->conexion-> mysqli_connect_error());
