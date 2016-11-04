@@ -175,14 +175,15 @@ if(isset($_POST["nombreD"]))
     
     if ($BAND === true)
     {
-        echo "<script type='text/javascript'>window.location='V2aFacultad.php?i=1'; </script>";
+        echo "<script type='text/javascript'>window.location='Agregar_Doctor.php?i=1'; </script>";
         exit();
     }
 }
 ?>
          
           
-<form class="form-horizontal">
+<form class="form-horizontal" method="POST">
+    <?php if(isset($_GET["i"]) and $_GET["i"] == 1){ echo "El dato se agrego con exito!!";}?>
      <div class="form-group">
          <label for="inputName" class="control-label col-xs-2">Nombre:</label>
          <div class="col-xs-5">

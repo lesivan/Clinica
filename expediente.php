@@ -389,6 +389,7 @@
             </div>
                
         </div>
+        </form>
         <!-- /.box-body -->
         <div class="box-footer">
           Footer
