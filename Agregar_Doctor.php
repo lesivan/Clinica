@@ -23,6 +23,8 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
+
+
   <header class="main-header">
     <!-- Logo -->
     <a href="index.html" class="logo">
@@ -210,13 +212,70 @@ if(isset($_POST["nombreD"]))
                     </div>
                 </div>
             </div>
-</form>
+</form> 
+      
+<div id="divider">
+<?php if(isset($_GET["j"]) and $_GET["j"] == 1){ echo "El dato se elimino con exito!!";}?>
 
-                 
-               
-               
+</div> 
+<?php
+if(isset($_POST["IdDoctor"]))
+{
+
+}
+else{
+}
+?>
+        
+<?php
+    include_once("Conexion.php");
+    
+    $obj=new MySQL();
+    
+      $consulta=$obj->consulta("SELECT * FROM doctor");
+
+      $resultado=$obj->num_rows($consulta);
+      
+      
+      
+        if ($resultado>0){
+          echo "<form id='elimina' name='elimina' action='Agregar_Doctor.php' method='POST'>";
+          echo "<div class='col-md-12 graphs'>";
+          echo "<div id='step-1'>";
+          echo "<div class='panel-body' align='center'> Doctores </p>";
+          echo "<table class='table table-hover'>
+            <th>Opción</th>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Especialidad</th>";
+  
+          for ($i=0;$i<$resultado;$i++){
+            $col=$obj->fetch_now($consulta);
+            echo "<tr>
+              <td><a href='delete.php?id=$col[0]'>Eliminar</a></td> 
+              <td>".$col[0]."</td>
+              <td>".$col[1]."</td>
+              <td>".$col[2]."</td>
+              <td>".$col[3]."</td>
+              
+              </tr>
+            "; //envia datos mediante url a través del metodo Get
+          }
+          echo "</table>
+          <input type='hidden' value=0 name='IdDoctor' id='IdDoctor'>
+          </form>  </div> </div> </div>" ;
+
+        }else{
+          
+          echo "No hay Doctores Registrados";
+        }
+    
+
+?>
+
         </div>
-        <!-- /.box-body -->
+        <!-- /.box-body <--></-->
         <div class="box-footer">
           Footer
         </div>
