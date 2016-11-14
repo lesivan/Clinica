@@ -144,6 +144,36 @@
     <section class="content">
 
 <!-- conoooo aqui vas a agrefar-->
+
+
+
+<?php
+
+include_once("Conexion.php");
+
+$obj=new MySQL();
+    
+if (isset($_POST) and isset($_POST['send']))
+{
+  $tem = $_POST['tema'];
+  $year = $_POST['anio'];
+  //$semest = $_POST['semestre'];
+  $linea = $_POST['lineainvestigacion'];
+$consulta = "INSERT INTO `tesis` (`Tema`, `año`, `semestre`, `idLineaInvestigacion`) values ('$tem', '$year', $semest, $linea)";
+
+    $BAND = $obj->consulta($consulta);
+
+    if($BAND)
+    {
+      echo "<script>alert('Registro almecenado correctamente')</script>";
+    }
+    else
+    {
+      echo "<script>alert('!!!Error...')</script>";
+    }    
+}
+?>
+
      <div class="box">
         <div class="box-header with-border">
           <h3 class="box-title">Citas</h3>
@@ -165,13 +195,20 @@
     <div class="form-group">
         <label class="control-label col-xs-3">Doctor:</label>
         <div class="col-xs-5">
-      <select class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-            <option>4</option>
-            <option>5</option>
-        </select>
+    <?php
+                    $dep = $obj->consulta("select * from doctor");
+                    ?>
+                  <select name="doctor" id="selector1"class="col-xs-12" required="required">
+                    <option value="seleccione">-Seleccione-</option>
+<?php foreach ($dep as $key) {
+?>
+<option value="<?php echo $key['IdDoctor'] ?>"><?php echo $key["PrimerNombre"]; ?></option>
+
+<?php                    }
+                    ?> ?>
+                    
+              </select>
+                
     </div>
     </div>
     <div class="form-group">

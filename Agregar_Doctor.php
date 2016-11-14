@@ -175,11 +175,14 @@ if(isset($_POST["nombreD"]))
     '$especialidad')";
     $BAND = $obj->consulta($consulta);  
     
-    if ($BAND === true)
+   if($BAND)
     {
-        echo "<script type='text/javascript'>window.location='Agregar_Doctor.php?i=1'; </script>";
-        exit();
+      echo "<script>alert('Registro almecenado correctamente')</script>";
     }
+    else
+    {
+      echo "<script>alert('!!!Error...')</script>";
+    }    
 }
 ?>
          
@@ -192,7 +195,7 @@ if(isset($_POST["nombreD"]))
              <input type="name" class="form-control" placeholder="Nombre" name="nombreD">
          </div>
      </div>
-     <div class="form-group">
+     <div class="form-group" >
          <label for="" class="control-label col-xs-2">Apellido:</label>
          <div class="col-xs-5">
              <input type="text" class="form-control" placeholder="apellido" name="apellidoD">
@@ -213,66 +216,54 @@ if(isset($_POST["nombreD"]))
                 </div>
             </div>
 </form> 
-      
-<div id="divider">
-<?php if(isset($_GET["j"]) and $_GET["j"] == 1){ echo "El dato se elimino con exito!!";}?>
 
-</div> 
-<?php
-if(isset($_POST["IdDoctor"]))
-{
+ <?php
+    include_once("conexion.php");
 
-}
-else{
-}
-?>
-        
-<?php
-    include_once("Conexion.php");
-    
     $obj=new MySQL();
-    
-      $consulta=$obj->consulta("SELECT * FROM doctor");
-
+  $consulta=$obj->consulta("SELECT * FROM doctor");
+     
       $resultado=$obj->num_rows($consulta);
-      
-      
-      
+     
+
         if ($resultado>0){
-          echo "<form id='elimina' name='elimina' action='Agregar_Doctor.php' method='POST'>";
-          echo "<div class='col-md-12 graphs'>";
-          echo "<div id='step-1'>";
-          echo "<div class='panel-body' align='center'> Doctores </p>";
-          echo "<table class='table table-hover'>
-            <th>Opción</th>
+        
+          echo "<table class='table table-bordered table-striped table-responsive' align='center' border='1'>
+           <form id='frmelimina' action='Agregar_Doctor.php' method='post'>
+          
+          <th>Opción</th>
             <th>Id</th>
             <th>Nombre</th>
             <th>Apellido</th>
-            <th>Especialidad</th>";
-  
+            <th>Especialidad</th>
+            ";
           for ($i=0;$i<$resultado;$i++){
             $col=$obj->fetch_now($consulta);
             echo "<tr>
-              <td><a href='delete.php?id=$col[0]'>Eliminar</a></td> 
-              <td>".$col[0]."</td>
-              <td>".$col[1]."</td>
-              <td>".$col[2]."</td>
-              <td>".$col[3]."</td>
-              
+              <td><button onclick='enviarformulario($col[0])' value='$col[0]' type='button' class='btn btn-primary'>Eliminar</button>
+             <td>".$col[0]."</td>
+             <td>".$col[1]."</td>
+             <td>".$col[2]."</td>
+            <td>".$col[3]."</td>
+            
+
               </tr>
             "; //envia datos mediante url a través del metodo Get
           }
-          echo "</table>
-          <input type='hidden' value=0 name='IdDoctor' id='IdDoctor'>
-          </form>  </div> </div> </div>" ;
-
+          echo "<input type='hidden' id='envia' name='envia' value='envia'>";
+          echo "</form></table>";
+            
+          
+        
         }else{
           
-          echo "No hay Doctores Registrados";
+          echo "NO SE ENCONTRARON DATOS";
         }
     
 
-?>
+?>   
+        
+
 
         </div>
         <!-- /.box-body <--></-->
@@ -338,5 +329,23 @@ else{
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+<script type="text/javascript">
+    function enviarformulario(i)
+    {
+      var txt;
+      var r = confirm("¿Estas seguro de eliminar?");
+      if (r == true){
+        txt = "", document.getElementById("envia").value=i ;
+        txt = "", document.getElementById("frmelimina").submit(txt);
+        
+      }else{
+        txt = "Solicitud cancelada";
+      }
+      document.getElementById("envia").innerHTML = txt;
+      
+    }
+  </script>
+
 </body>
 </html>
